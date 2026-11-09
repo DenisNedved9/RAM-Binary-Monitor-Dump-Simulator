@@ -5,7 +5,7 @@
 #include <windows.h>
 
 int main(){
-    //vytvoření ram přes malloc pro 1KB
+    //created the ram for 1KB
     int size_ram = 1024; // 1 KB
     char *ram = malloc(size_ram);
     srand(time(NULL));
@@ -18,7 +18,7 @@ int main(){
 
     int h = 0;
 
-    //náhodné generovnání dat do ram
+    //generate random data into RAM
     while (h < 20) {
         FILE *Ram_data = fopen("ram_data.bin", "wb");
         FILE *Ram_data_txt = fopen("ram_data.txt", "w");
@@ -32,7 +32,7 @@ int main(){
             ram[i] = rand() % 255;
         }
 
-     //výpis dat z ram každou vteřinu do Ram_data.bin a Ram_data.txt
+     //send data into Ram_data.bin a Ram_data.txt
         fprintf(Ram_data_txt, "Data v RAM:\n");
         for (int i = 0; i < size_ram; i++) {
             fprintf(Ram_data_txt, "%u ", (unsigned char)ram[i]);
@@ -42,12 +42,11 @@ int main(){
             }
         }
         fprintf(Ram_data_txt, "\n");
-        //printf("Data was saved\n");
         fflush(Ram_data);
         fflush(Ram_data_txt);
         fclose(Ram_data);
         fclose(Ram_data_txt);
-        //čekání 1 sekundu
+        //wait 500ms
         Sleep(500);
         h++;
         
